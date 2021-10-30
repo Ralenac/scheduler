@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DayList from "components/DayList"
 import Appointment from "./Appointment";
-import getAppointmentsForDay from "./helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "./helpers/selectors";
 import "components/Application.scss";
+
 
 // const appointments = [
 //   {
@@ -68,14 +69,14 @@ export default function Application(props) {
   const [state, setState] = useState ({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   })
 
   // const dailyAppointments = [];
 
   const setDay = day => setState({ ...state, day });
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-
+ 
   useEffect(() => { 
 
     Promise.all([
@@ -91,10 +92,20 @@ export default function Application(props) {
   }, []);
 
   
+  const appointments = getAppointmentsForDay(state, state.day);
 
-  const parsedAppointments = dailyAppointments.map(appointment => ( 
-    <Appointment key={appointment.id} {...appointment} />
-    ));
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+  
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
 
 
   return (
@@ -112,7 +123,7 @@ export default function Application(props) {
         <img className="sidebar__lhl sidebar--centered" src="images/lhl.png" alt="Lighthouse Labs"/>
       </section>
       <section className="schedule">
-        {parsedAppointments}
+        {schedule}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
