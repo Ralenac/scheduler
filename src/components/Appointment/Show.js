@@ -28,6 +28,7 @@ export default function Show(props) {
             src="images/trash.png"
             alt="Delete"
             onClick={onDelete}
+            
           />
         </section>
       </section>
