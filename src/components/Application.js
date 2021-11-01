@@ -86,10 +86,13 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-
-    setState({...state, appointments
-    });
-
+    
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then(() => {
+        setState({...state, appointments
+          });
+        })
+        
   }
 
   const setDay = day => setState({ ...state, day });
@@ -114,6 +117,9 @@ export default function Application(props) {
 
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+    // if(appointment.id===13) {
+    //   console.log("test", interview)
+    // }
   
     return (
       <Appointment
