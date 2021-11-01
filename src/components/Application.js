@@ -133,9 +133,6 @@ export default function Application(props) {
 
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-    // if(appointment.id===13) {
-    //   console.log("test", interview)
-    // }
   
     return (
       <Appointment
