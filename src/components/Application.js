@@ -64,6 +64,8 @@ import "components/Application.scss";
 // ];
 
 
+
+
 export default function Application(props) {
 
   const [state, setState] = useState ({
@@ -73,7 +75,22 @@ export default function Application(props) {
     interviewers: {}
   })
 
-  // const dailyAppointments = [];
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({...state, appointments
+    });
+
+  }
 
   const setDay = day => setState({ ...state, day });
  
@@ -105,6 +122,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers= {interviewers}
+        bookInterview={bookInterview}
       />
     );
   });

@@ -1,12 +1,12 @@
 import React from "react";
-import className from "classnames";
+import classNames from "classnames";
 import "components/InterviewerListItem.scss"
 
 export default function InterviewerListItem(props) {
 
   const {name, avatar, selected, setInterviewer} = props
 
-  let interviewerClass = className({
+  let interviewerClass = classNames({
     interviewerClass: true,
     "interviewers__item": true,
     "interviewers__item-image": true,

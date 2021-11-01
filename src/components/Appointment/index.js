@@ -1,5 +1,5 @@
 // import Appointment from "components/Appointment";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -16,6 +16,15 @@ export default function Appointment(props) {
 
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY)
 
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.bookInterview(props.id, interview); 
+    transition(SHOW);
+    
+  }
 
   return (
   
@@ -30,8 +39,9 @@ export default function Appointment(props) {
       )}
       {mode === CREATE && (
         <Form 
-          interviewers={[]}
+          interviewers={props.interviewers}
           onCancel={back}
+          onSave={save}
         />
       )}
       
