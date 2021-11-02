@@ -19,6 +19,7 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING"
   const CONFIRM = "CONFIRM"
+  const EDIT = "EDIT"
 
 
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY)
@@ -57,6 +58,7 @@ export default function Appointment(props) {
         <Show 
           interview={props.interview}
           onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
         />
       )}
       {mode === CREATE && (
@@ -81,6 +83,13 @@ export default function Appointment(props) {
       {mode === DELETING && (
         <Status 
           message="Deleting"
+        />
+      )}
+      {mode === EDIT && (
+        <Form
+        interviewers={props.interviewers}
+        onSave={save}
+        onCancel={back}
         />
       )}
       
