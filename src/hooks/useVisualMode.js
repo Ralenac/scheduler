@@ -12,7 +12,7 @@ export function useVisualMode(initial) {
     }
     setMode(newMode)
   }
-
+ 
   // Set a previous mode and removes the last one from the history
   const back = function() {
     if (history.length > 1) {
