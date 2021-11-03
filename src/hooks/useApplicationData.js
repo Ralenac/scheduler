@@ -3,9 +3,8 @@
 
 
  export function useApplicationData() {
-
-
- const [state, setState] = useState ({
+   
+  const [state, setState] = useState ({
     day: "Monday",
     days: [],
     appointments: {},
@@ -13,8 +12,8 @@
   })
   
   
-  
   function updateSpots(state, appointments) {
+
     const currentDay = state.days.find((day)=> {
       return day.name === state.day
     })
@@ -22,7 +21,6 @@
     const currentDayIndex = state.days.findIndex((day)=> {
       return day.name === state.day
     })
-
 
     const appointmentIds = currentDay.appointments 
     const nullAppointments = appointmentIds.filter((id) => {
@@ -37,10 +35,7 @@
 
   }
 
-
-
   function bookInterview(id, interview) {
-    console.log("_________",interview)
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -51,10 +46,7 @@
       [id]: appointment
     };
 
-    console.log("before", state.days)
-
     const days = updateSpots(state, appointments)
-    console.log("days", days)
     
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
@@ -84,8 +76,6 @@
         });
       })
   }
-
-
 
   const setDay = day => setState({ ...state, day });
  

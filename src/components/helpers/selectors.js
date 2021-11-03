@@ -1,4 +1,3 @@
-
 // Returns an array of appointments for the given day.
 
 export function getAppointmentsForDay(state, day) {
@@ -9,6 +8,7 @@ export function getAppointmentsForDay(state, day) {
       })
     }
   }
+
   return [];
 
 }
@@ -20,7 +20,6 @@ export function getInterviewersForDay(state, day) {
     if (state.days[i].name === day) {
       return state.days[i].interviewers.map((interviewer) => {
         return state.interviewers[interviewer];
-
       });
     }
   }
@@ -30,13 +29,11 @@ export function getInterviewersForDay(state, day) {
 
 //Returns a new object containing the interview data when we pass it an object that contains the interviewer
 
-
 export function getInterview(state, interview) {
   
   if (interview) {
     return {
       student: interview.student,
-      //state.interviewers-> key srom state and [interview.interviewer] is value from interview but it is the key for the interviewer id
       interviewer: state.interviewers[interview.interviewer],
     };
   }

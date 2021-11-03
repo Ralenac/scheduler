@@ -1,28 +1,24 @@
 import React, { useState } from "react";
+
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
 
-
 export default function Form(props) {
 
- 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
  
-  
   const reset = function() {
     setInterviewer(null);
     setStudent("");
   }
 
-
   const cancel = function() {
     reset();
     props.onCancel();
   }
-
 
   function validate() {
     if (student === "") {
@@ -35,7 +31,6 @@ export default function Form(props) {
   }
   
  
-
   return (
    
     <main className="appointment__card appointment__card--create">
@@ -68,5 +63,5 @@ export default function Form(props) {
       </section>
     </main>
   );
-}
+};
 
