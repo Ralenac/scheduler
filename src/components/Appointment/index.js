@@ -32,6 +32,8 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+
+    // console.log("++++++",interview)
   
     transition(SAVING);
   
@@ -48,8 +50,6 @@ export default function Appointment(props) {
      .then(() => transition(EMPTY))
      .catch(error => transition(ERROR_DELETE, true));
    }
-
-  // console.log({mode})
 
   return (
   

@@ -40,8 +40,7 @@
 
 
   function bookInterview(id, interview) {
-
-
+    console.log("_________",interview)
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -57,7 +56,7 @@
     const days = updateSpots(state, appointments)
     console.log("days", days)
     
-    return axios.put(`/api/appointments/${id}`)
+    return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
         setState({...state, appointments, days
           });
