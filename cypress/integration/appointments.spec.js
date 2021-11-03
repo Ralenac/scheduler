@@ -1,11 +1,3 @@
-// Visits the root of our web server
-// Clicks on the "Add" button in the second appointment
-// Enters their name
-// Chooses an interviewer
-// Clicks the save button
-// Sees the booked appointment
-
-
 
 describe("Appointments", () => {
   beforeEach(() => {
